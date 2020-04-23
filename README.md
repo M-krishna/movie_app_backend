@@ -4,7 +4,7 @@
 The server is built using NodeJS and Express.
 
 The server is backend that powers the Movie App platform. It is RESTful and communicates with all distributed systems 
-using REST over HTTP?HTTPS. 
+using REST over HTTP/HTTPS. 
 
 Server Entry point is at `index.ts`
 
