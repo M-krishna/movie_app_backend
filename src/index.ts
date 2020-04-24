@@ -2,7 +2,7 @@ import express from 'express';
 
 import initialize from './loaders';
 import config from './common/config';
-import movieRoutes from './controllers/MovieControllers/serviceFactory';
+import movieRoutes from './controllers/serviceFactory';
 
 const app = express();
 

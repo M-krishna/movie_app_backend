@@ -21,6 +21,10 @@ export default abstract class ExpressController {
         res.status(404).json(message)
     }
 
+    public unauthorised(res: Response, message: string): void {
+        res.status(401).json(message)
+    }
+
     public somethingWentWrong(res: Response, err: string): void {
         res.status(500).json({
             success: false,
