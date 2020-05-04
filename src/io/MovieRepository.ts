@@ -1,5 +1,5 @@
 import { IMovieRepository } from '../services/MovieService';
-import MovieModel from '../models/movies';
+import { movieSchema as MovieModel } from '../models/movies';
 import { IMovie } from '../models/types';
 
 export default class MovieRepository implements IMovieRepository {
@@ -27,7 +27,7 @@ export default class MovieRepository implements IMovieRepository {
 
     async getMovieById(data: Record<string, any>): Promise<any> {
         const { movieId } = data;
-        const movieData = await MovieModel.findById({ _id: movieId });
+        const movieData = await MovieModel.findById({ _id: movieId }).select('_id name year genre rating director movieImage trailer relatedMovies');
         if(!movieData){
             return {
                 success: false,
@@ -57,7 +57,7 @@ export default class MovieRepository implements IMovieRepository {
     }
 
     async updateMovie(data: IMovie): Promise<any> {
-        const { _id, name, year, genre, rating, director } = data;
+        const { _id, name, year, genre, rating, director, trailer, relatedMovies } = data;
         const result = await MovieModel.findOneAndUpdate(
             { _id: _id},
             {$set: 
@@ -66,7 +66,9 @@ export default class MovieRepository implements IMovieRepository {
                     "year": year,
                     "genre": genre,
                     "rating": rating,
-                    "director": director
+                    "director": director,
+                    "trailer": trailer,
+                    "relatedMovies": relatedMovies
                 }
             }
         )

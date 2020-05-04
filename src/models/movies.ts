@@ -26,7 +26,17 @@ const MovieSchema: Schema = new Schema({
     movieImage: {
         type: String,
         required: true
+    },
+    trailer: {
+        type: String
+    },
+    relatedMovies: {
+        type: [Schema.Types.ObjectId]
     }
 })
 
-export default mongoose.model<IMovie>('Movie', MovieSchema);
+const movieSchema = mongoose.model<IMovie>('Movie', MovieSchema);
+
+export {
+    movieSchema
+}

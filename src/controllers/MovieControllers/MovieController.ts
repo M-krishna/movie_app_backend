@@ -85,9 +85,9 @@ class MovieController extends ExpressController {
 
     public updateMovie = async (req: Request, res: Response) => {
         try {
-            const { name, year, genre, rating, director } = req.body;
+            const { name, year, genre, rating, director, trailer, relatedMovies } = req.body;
             const { movieId } = req.params; 
-            const data = { _id: movieId, name, year, genre, rating, director };
+            const data = { _id: movieId, name, year, genre, rating, director, trailer, relatedMovies };
             const result = await this.movieService.updateAMovie(data);
             if (!result.success) {
                 this.notFound(res, result)

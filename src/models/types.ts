@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 export interface IUser extends Document {
     username: string;
@@ -13,5 +13,7 @@ export interface IMovie extends Document {
     genre: string[],
     rating: string,
     director: string,
-    movieImage?: string
+    movieImage?: string,
+    trailer?: string,
+    relatedMovies?: Schema.Types.ObjectId
 }
