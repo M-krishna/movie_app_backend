@@ -11,6 +11,9 @@
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --detectOpenHandles",
     "test:watch": "jest --watch"
   },
+  "engines": {
+    "node": "12.16.1"
+  },
   "author": "krishna",
   "license": "ISC",
   "dependencies": {
