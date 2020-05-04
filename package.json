@@ -7,7 +7,7 @@
     "dev": "nodemon --watch src/**/*.ts --exec ts-node src/server.ts",
     "build": "tsc",
     "postinstall": "yarn build",
-    "start": "node dist/index.js",
+    "start": "node dist/server.js",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --detectOpenHandles",
     "test:watch": "jest --watch"
   },
