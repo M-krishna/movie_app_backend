@@ -1,6 +1,5 @@
 import request from 'supertest'
 import { app } from '../src'
-import MovieModel from '../src/models/movies'
 
 import { API_PREFIX } from './constants'
 

@@ -25,7 +25,7 @@ export default class AuthenticationController extends ExpressController {
             if(!result.success){
                 this.unauthorised(res, result)
             } else {
-                this.json(res, {})
+                this.json(res, result.data)
             }
         } catch (err) {
             this.somethingWentWrong(res, err)
