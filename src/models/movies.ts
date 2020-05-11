@@ -35,6 +35,8 @@ const MovieSchema: Schema = new Schema({
     }
 })
 
+MovieSchema.index({ name: 'text' })
+
 const movieSchema = mongoose.model<IMovie>('Movie', MovieSchema);
 
 export {

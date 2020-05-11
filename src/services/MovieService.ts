@@ -7,6 +7,7 @@ export interface IMovieRepository {
     deleteMovieById(data: Record<string, any>): Promise<any>;
     deleteMovies(): Promise<any>;
     updateMovie(data: IMovie): Promise<any>;
+    searchMovie(data: IMovie): Promise<any>;
 }
 
 export default class MovieService {
@@ -38,5 +39,9 @@ export default class MovieService {
 
     async updateAMovie(data: IMovie): Promise<any> {
         return this.movieRepository.updateMovie(data);
+    }
+
+    async movieSearch(data: IMovie): Promise<any> {
+        return this.movieRepository.searchMovie(data)
     }
 }

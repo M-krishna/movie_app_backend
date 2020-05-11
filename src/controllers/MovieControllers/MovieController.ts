@@ -14,6 +14,7 @@ class MovieController extends ExpressController {
 
     protected mapRoutes() {
         this.router.get(this.path, this.getAllMovies);
+        this.router.get(`${this.path}/search`, this.searchMovie);
         this.router.get(`${this.path}/:movieId`, this.getMovieById);
         this.router.post(this.path, this.addMovie);
         this.router.delete(`${this.path}/:movieId`, this.deleteMovieById);
@@ -96,6 +97,17 @@ class MovieController extends ExpressController {
             }
         } catch (err) {
             this.somethingWentWrong(res, err);
+        }
+    }
+
+    public searchMovie = async (req: Request, res: Response) => {
+        try {
+            const { name } = req.query
+            const data = { name }
+            const result = await this.movieService.movieSearch(data)
+            this.json(res, result)
+        } catch (err) {
+            this.somethingWentWrong(res, err)
         }
     }
 }

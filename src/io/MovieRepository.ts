@@ -77,4 +77,10 @@ export default class MovieRepository implements IMovieRepository {
         }
         return { success: true };
     }
+
+    async searchMovie(data: IMovie): Promise<any> {
+        const { name } = data
+        const result = await MovieModel.find({ $text: {$search: name}}).select('_id name year genre rating director movieImage')
+        return result
+    }
 }
