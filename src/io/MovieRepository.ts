@@ -3,9 +3,15 @@ import { movieSchema as MovieModel } from '../models/movies';
 import { IMovie } from '../models/types';
 
 export default class MovieRepository implements IMovieRepository {
-    async getAllMovies(): Promise<IMovie[]> {
+    async getAllMovies(data: Record<string, any>): Promise<IMovie[]> {
+        const { page } = data;
+        const resultPerPage = 20;
+        const currentPage = page || 1;
+
         let movieList: IMovie[];
-        movieList = await MovieModel.find().select('_id name year genre rating director movieImage');
+        movieList = await MovieModel.find().select('_id name year genre rating director movieImage')
+            .skip((resultPerPage * currentPage) - resultPerPage)
+            .limit(resultPerPage)
         return movieList;
     }
 
@@ -52,7 +58,7 @@ export default class MovieRepository implements IMovieRepository {
     }
 
     async deleteMovies(): Promise<any> {
-        const result = await MovieModel.deleteMany({});
+        await MovieModel.deleteMany({});
         return  {}
     }
 

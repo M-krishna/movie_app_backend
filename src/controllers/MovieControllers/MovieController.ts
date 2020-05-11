@@ -23,8 +23,14 @@ class MovieController extends ExpressController {
     }
 
     public getAllMovies = async (req: Request, res: Response) => {
-        const result = await this.movieService.getMovies();
-        this.json(res, result);
+        try {
+            const { page } = req.query
+            const data = { page }
+            const result = await this.movieService.getMovies(data);
+            this.json(res, result);
+        } catch (err) {
+            this.somethingWentWrong(res, err)
+        }
     }
 
     public addMovie = (req: Request, res: Response) => {
