@@ -33,7 +33,7 @@ class MovieController extends ExpressController {
         }
     }
 
-    public addMovie = (req: Request, res: Response) => {
+    public addMovie = async (req: Request, res: Response) => {
         try {
             const { name, year, genre, rating, director, movieImage } = req.body;
             const data = {
@@ -44,7 +44,8 @@ class MovieController extends ExpressController {
                 director,
                 movieImage
             };
-            const result = this.movieService.addMovies(data);
+            const result = await this.movieService.addMovies(data);
+            console.log(result)
             this.json(res, result);
         } catch(err) {
             this.somethingWentWrong(res, err);

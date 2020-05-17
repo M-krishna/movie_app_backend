@@ -50,7 +50,6 @@ export default class MovieRepository implements IMovieRepository {
     async deleteMovieById(data: Record<string, any>): Promise<any> {
         const { movieId } = data;
         const result = await MovieModel.deleteOne({ _id: movieId })
-        console.log(result);
         if (result.n == 0) {
             return { success: false, error: 'Movie ID not found!', data: {} };
         }

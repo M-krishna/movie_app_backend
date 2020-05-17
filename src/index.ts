@@ -1,15 +1,17 @@
-import express from 'express';
+import { Server } from './server'
 
-import initialize from './loaders';
-import config from './common/config';
-import movieRoutes from './controllers/serviceFactory';
+const server = new Server()
 
-const app = express();
+server.listen(port => {
+    console.log(`Server is listening on http://localhost:${port}`);
+})
 
-initialize(app);
+// const app = express();
 
-movieRoutes.forEach(controller => {
-    app.use(`/${config.VERSION}/api`, controller.router);
-});
+// initialize(app);
 
-export { app };
+// movieRoutes.forEach(controller => {
+//     app.use(`/${config.VERSION}/api`, controller.router);
+// });
+
+// export { app };

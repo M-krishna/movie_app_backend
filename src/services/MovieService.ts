@@ -2,7 +2,7 @@ import { IMovie } from '@models/types';
 
 export interface IMovieRepository {
     getAllMovies(data: Record<string, any>): Promise<IMovie[]>;
-    addMovie(data: IMovie): Record<string, any>;
+    addMovie(data: IMovie): Promise<IMovie>;
     getMovieById(data: Record<string, any>): Promise<any>;
     deleteMovieById(data: Record<string, any>): Promise<any>;
     deleteMovies(): Promise<any>;
@@ -21,8 +21,8 @@ export default class MovieService {
         return this.movieRepository.getAllMovies(data);
     }
 
-    addMovies(data: IMovie): Record<string, any> {
-        return this.movieRepository.addMovie(data);
+    async addMovies(data: IMovie): Promise<IMovie> {
+        return await this.movieRepository.addMovie(data);
     }
 
     async getSingleMovie(data: Record<string, any>): Promise<any> {
