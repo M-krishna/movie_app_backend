@@ -45,7 +45,6 @@ class MovieController extends ExpressController {
                 movieImage
             };
             const result = await this.movieService.addMovies(data);
-            console.log(result)
             this.json(res, result);
         } catch(err) {
             this.somethingWentWrong(res, err);
